@@ -29,26 +29,38 @@ int no_builtins(args_t **head)
 }
 int builtins(args_t **head)
 {
-	char builtins[3][10] = {"hola", "exit", "env"};
+	select_built_t modulo[] = {{"exit", holam}, {NULL, NULL}};
 	args_t *aux = *head;
-	int i, comp;
+	int i, comp, a = 0, len = 0, j = 0;
 	char *concat, ruta[30], *dato = aux->arg;
 
-	for(i = 0; i < 3; i++)
+	comp = _strcmp(modulo[0].id, dato);
+	printf("%d\n", comp);
+	if (comp == 0)
+	{
+		modulo[0].f();
+		return (0);
+	}
+	else if (comp != 0)
+	{
+		no_builtins(head);
+		return (0);
+	}
+	/*for(i = 0; i < 3; i++)
 	{
 		comp = _strcmp(aux->arg, builtins[i]);
 		if(comp == 0)
 		{
 			aux->arg = dato;
 			return(0);
-/*			getcwd(ruta, sizeof(ruta));
-			concat = _strcat(ruta, dato);*/
+			getcwd(ruta, sizeof(ruta));
+			concat = _strcat(ruta, dato);
 		} else
 		{
 			no_builtins(head);
 			return (0);
 		}
-	}
+	}*/
 	aux->arg = dato;
 	return (0);
 }

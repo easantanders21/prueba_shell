@@ -17,6 +17,12 @@ typedef struct args_s
     struct  args_s *next;
 } args_t;
 
+typedef struct built_l
+{
+	char *id;
+	int (*f)();
+} select_built_t;
+
 #define UNUSED(x) (void)(x);
 /*prototypes*/
 int main(int argc, char **argv, char **env);
@@ -27,4 +33,7 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *concatenar(char *dir, char *comando);
 char *_getenv(const char *name);
+int _exito(void);
+int _env(void);
+int holam(void);
 #endif /* MAIN_H */
